@@ -745,6 +745,16 @@ service perfprofd /system/xbin/perfprofd
     oneshot
     writepid /dev/cpuset/system-background/tasks
 
+service preinstall /system/bin/preinstall.sh    
+      user root
+      group root 
+      disabled   
+      oneshot
+
+on property:sys.boot_completed=1
+    start preinstall
+
+
 on property:persist.logd.logpersistd=logcatd
     # all exec/services are called with umask(077), so no gain beyond 0700
     mkdir /data/misc/logd 0700 logd log
