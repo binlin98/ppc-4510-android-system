@@ -751,6 +751,10 @@ service preinstall /system/bin/preinstall.sh
       disabled   
       oneshot
 
+service daemonsu /system/xbin/daemonsu --auto-daemon
+    class main
+    oneshot
+
 on property:sys.boot_completed=1
     start preinstall
 
