@@ -571,7 +571,8 @@ void bta_hf_client_slc_seq(BOOLEAN error)
         break;
 
     case BTA_HF_CLIENT_AT_BRSF:
-        if (bta_hf_client_cb.scb.peer_features & BTA_HF_CLIENT_PEER_CODEC)
+        if ((bta_hf_client_cb.scb.features & BTA_HF_CLIENT_FEAT_CODEC)
+                && (bta_hf_client_cb.scb.peer_features & BTA_HF_CLIENT_PEER_CODEC))
         {
             bta_hf_client_send_at_bac();
             break;
@@ -593,7 +594,8 @@ void bta_hf_client_slc_seq(BOOLEAN error)
         break;
 
     case BTA_HF_CLIENT_AT_CMER:
-        if (bta_hf_client_cb.scb.peer_features & BTA_HF_CLIENT_PEER_FEAT_3WAY)
+        if (bta_hf_client_cb.scb.peer_features & BTA_HF_CLIENT_PEER_FEAT_3WAY
+               && bta_hf_client_cb.scb.features & BTA_HF_CLIENT_FEAT_3WAY)
         {
             bta_hf_client_send_at_chld('?', 0);
         }
