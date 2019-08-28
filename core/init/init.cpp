@@ -727,6 +727,8 @@ static int keychord_init_action(int nargs, char **args)
 
 static int console_init_action(int nargs, char **args)
 {
+    return 0;
+
     char console[PROP_VALUE_MAX];
     if (property_get("ro.boot.console", console) > 0) {
         snprintf(console_name, sizeof(console_name), "/dev/%s", console);
